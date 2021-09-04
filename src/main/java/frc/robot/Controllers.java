@@ -141,7 +141,7 @@ public class Controllers extends Subsystem {
                 + QUICK_STOP_ALPHA * MathUtil.clamp(zRotation, -1.0, 1.0) * 2;
       }
       overPower = true;
-      angularPower = zRotation / 2;
+      angularPower = zRotation / 4;
     } else {
       overPower = false;
       angularPower = Math.abs(xSpeed) * zRotation - accumulator;
@@ -334,17 +334,17 @@ public class Controllers extends Subsystem {
       double customDemand = SmartDashboard.getNumber("Shooter/Shooter Speed", 0);
       newValue = new Order66(ControlType.kVelocity, customDemand);
     } else if (greenZonePosition(false)) {
-      newValue = isNew() ? NEW_GREEN_ZONE_ORDER_66 : GREEN_ZONE_ORDER_66;
+      newValue = isNew() ? NEW_GREEN_ZONE_ORDER_66 : VERY_CLOSE_ORDER_66;
     } else if (yellowZonePosition(false)) {
-      newValue = isNew() ? NEW_YELLOW_ZONE_ORDER_66 : YELLOW_ZONE_ORDER_66;
+      newValue = isNew() ? NEW_YELLOW_ZONE_ORDER_66 : CLOSE_ORDER_66;
     } else if (blueZonePosition(false)) {
-      newValue = isNew() ? NEW_BLUE_ZONE_ORDER_66 : BLUE_ZONE_ORDER_66;
+      newValue = isNew() ? NEW_BLUE_ZONE_ORDER_66 : AUTOLINE_ORDER_66;
     } else if (trenchPosition(false)) {
       newValue = TRENCH_ORDER_66;
     } else if (redZonePosition(false)) {
-      newValue = isNew() ? NEW_RED_ZONE_ORDER_66 : RED_ZONE_ORDER_66;
+      newValue = isNew() ? NEW_RED_ZONE_ORDER_66 : VERY_FAR_ORDER_66;
     } else if (spinWithoutMoveHood(false)){
-      newValue = isNew() ? NEW_YELLOW_ZONE_ORDER_66 : YELLOW_ZONE_ORDER_66;
+      newValue = isNew() ? NEW_YELLOW_ZONE_ORDER_66 : CLOSE_ORDER_66;
     }else {
       
       newValue = DONT_EXECUTE_ORDER_66;

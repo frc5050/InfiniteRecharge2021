@@ -20,7 +20,7 @@ public class Cameras {
     private UsbCamera fisheyeCamera;
 
     public Cameras() {
-        shootCamera = CameraServer.getInstance().startAutomaticCapture(0);
+        /*shootCamera = CameraServer.getInstance().startAutomaticCapture(0);
         fisheyeCamera = CameraServer.getInstance().startAutomaticCapture(1);
         shootCamera.setResolution(160, 120);
         shootCamera.setFPS(15);
@@ -32,7 +32,7 @@ public class Cameras {
             e.printStackTrace();
         }
         //fisheyeCamera.setFPS(15);
-        //fisheyeCamera.setWhiteBalanceAuto();
+        //fisheyeCamera.setWhiteBalanceAuto();*/
 
     }
 }

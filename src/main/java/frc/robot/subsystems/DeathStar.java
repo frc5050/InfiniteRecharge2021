@@ -74,7 +74,7 @@ public class DeathStar extends Subsystem {
 
     @Override
     public void generalInit() {
-        SmartDashboard.putNumber("Shooter/Shooter Speed", 0);
+        //SmartDashboard.putNumber("Shooter/Shooter Speed", 0);
        // SmartDashboard.putNumber("ShooterDesiredRPM", 0);
         setOrder66(DONT_EXECUTE_ORDER_66);
         setMotorPowers(0, 0);
@@ -92,12 +92,12 @@ public class DeathStar extends Subsystem {
     @Override
     public void generalPeriodic() {
         rpmError = Math.abs(order66.demand - shootLeftEncoder.getVelocity());
-        SmartDashboard.putNumber("Shooter/RPM Error", rpmError);
-        SmartDashboard.putNumber("Shooter/Left RPM", shootLeftEncoder.getVelocity());
-        SmartDashboard.putNumber("Shooter/Right RPM", shootRightEncoder.getVelocity());
+        //SmartDashboard.putNumber("Shooter/RPM Error", rpmError);
+        //SmartDashboard.putNumber("Shooter/Left RPM", shootLeftEncoder.getVelocity());
+        //SmartDashboard.putNumber("Shooter/Right RPM", shootRightEncoder.getVelocity());
 
-        SmartDashboard.putNumber("Shooter/Left Motor Power", shootLeftMotor.get());
-        SmartDashboard.putNumber("Shooter/Right Motor Power", shootRightMotor.get());
+        //SmartDashboard.putNumber("Shooter/Left Motor Power", shootLeftMotor.get());
+        //SmartDashboard.putNumber("Shooter/Right Motor Power", shootRightMotor.get());
 
         
 
@@ -129,7 +129,7 @@ public class DeathStar extends Subsystem {
             }
         }
 
-        SmartDashboard.putNumber("Shooter/Shooter Speed", order66.demand);
+        //SmartDashboard.putNumber("Shooter/Shooter Speed", order66.demand);
     }
 
     public void setMotorPowers(double leftPower, double rightPower) {

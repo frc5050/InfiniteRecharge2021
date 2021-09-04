@@ -43,6 +43,7 @@ public class Shoot implements TaskBase {
     @Override
     public boolean periodic() {
         if (blinky.blinkyEmpty() && !wasBlinkyEmpty) {
+            // newly empty
             timer.reset();
             timer.start();
             wasBlinkyEmpty = true;
@@ -50,7 +51,14 @@ public class Shoot implements TaskBase {
             timer.stop();
             wasBlinkyEmpty = false;
         }
-        return timer.get() >= 1.0;
+
+        if (blinky.blinkyEmpty()) {
+            return timer.get() >= 1.0;
+        }
+        // if blinky is empty & it's been at least 1 second
+        // or if blinky isn't empty then if it's been at least 5 seconds
+        return timer.get() >= 5.0;
+        
     }
 
     @Override

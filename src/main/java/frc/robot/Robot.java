@@ -34,6 +34,7 @@ import frc.robot.autons.GalacticSearchA;
 import frc.robot.autons.GalacticSearchB;
 import frc.robot.autons.GalacticSearchFull;
 import frc.robot.autons.IntakeUp;
+import frc.robot.autons.MoveOffLineForward;
 import frc.robot.autons.BarrelRacing;
 import frc.robot.autons.BouncePath;
 import frc.robot.autons.CirclePathWeaver;
@@ -95,6 +96,7 @@ public class Robot extends TimedRobot {
         pathLoader = PathLoader.getInstance();
         // Autons
         new Default();
+        new MoveOffLineForward();
         new DriveBackCalibration();
         new ShootAndMoveOffLine();
         new ShootAndDriveToTrench();
@@ -154,15 +156,15 @@ public class Robot extends TimedRobot {
             DisturbingForce disturbingForce = new DisturbingForce(ControlMode.Position, customDemand);
             vader.setVaderControlMode(disturbingForce);
         } else if (controllers.yellowZonePosition(true)) {
-            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_YELLOW_ZONE_POSITION : Constants.YELLOW_ZONE_POSITION);
+            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_YELLOW_ZONE_POSITION : Constants.CLOSE_POSITION);
         } else if (controllers.trenchPosition(true)) {
             vader.setVaderControlMode(Constants.TRENCH_POSITION);
         } else if (controllers.greenZonePosition(true)) {
-            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_GREEN_ZONE_POSITION : Constants.GREEN_ZONE_POSITION);
+            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_GREEN_ZONE_POSITION : Constants.VERY_CLOSE_POSITION);
         } else if (controllers.redZonePosition(true)) {
-            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_RED_ZONE_POSITION : Constants.RED_ZONE_POSITION);
+            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_RED_ZONE_POSITION : Constants.VERY_FAR_POSITION);
         } else if (controllers.blueZonePosition(true)) {
-            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_BLUE_ZONE_POSITION : Constants.BLUE_ZONE_POSITION);
+            vader.setVaderControlMode(controllers.isNew() ? Constants.NEW_BLUE_ZONE_POSITION : Constants.AUTOLINE_DISTURBING_FORCE);
         }
         if (controllers.joystickDPadUp()) {
             vader.setVaderControlMode(Constants.MANUAL_MODE_UP);
@@ -202,7 +204,7 @@ public class Robot extends TimedRobot {
             subsystem.generalInit();
             double timeTaken = System.nanoTime() - startTime;
             String name = subsystem.getClass().getName();
-            SmartDashboard.putNumber("Performance/AutonomousInit/" + name, timeTaken / 1000000);
+            //SmartDashboard.putNumber("Performance/AutonomousInit/" + name, timeTaken / 1000000);
 
 
         }

@@ -26,8 +26,8 @@ public class ShootFromAutonLine implements TaskBase {
 
     @Override
     public void start() {
-        deathStar.setOrder66(BLUE_ZONE_ORDER_66);
-        Vader.getInstance().setVaderControlMode(BLUE_ZONE_POSITION);
+        deathStar.setOrder66(AUTOLINE_ORDER_66);
+        Vader.getInstance().setVaderControlMode(AUTOLINE_DISTURBING_FORCE);
         timer = new Timer();
         totalTimer = new Timer();
         totalTimer.start();

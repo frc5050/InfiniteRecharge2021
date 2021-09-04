@@ -30,7 +30,7 @@ public class ShootAndDriveToTrench extends AutonBase {
     public TaskBase[] getTasks() {
         return new TaskBase[]{
                 new ZeroHoodMotor(),
-                new EmergencyAuton(new Shoot(BLUE_ZONE_ORDER_66, BLUE_ZONE_POSITION), 5, new MoveOffLine()),
+                new EmergencyAuton(new Shoot(AUTOLINE_ORDER_66, AUTOLINE_DISTURBING_FORCE), 5, new MoveOffLine()),
                 new DeployIntakeTrench(),
                 new DriveDistance(-90 * 25.4, 0.5),
                 new NavXTurnDegrees(15),

@@ -48,6 +48,7 @@ public class DriveTrain extends Subsystem {
     private DifferentialDriveOdometry odometry;
     public AHRS gyro;
 
+    private double sumOfError = 0.0;
     private double change = 0.0;
     private Limelight limelight;
     private double angleToTarget;
@@ -83,6 +84,7 @@ public class DriveTrain extends Subsystem {
 
 
         limelight = Limelight.getInstance();
+        limelight.setLED(true);
         odometry = new DifferentialDriveOdometry(getRotation2d());
         setPIDValue(PATHFINDER_P, PATHFINDER_I, PATHFINDER_D, PATHFINDER_FF, PATHFINDER_IZ);
     }
@@ -150,7 +152,9 @@ public class DriveTrain extends Subsystem {
         leftMotorFront.setInverted(true);
         setMotorPower(0, 0);
 
-        SmartDashboard.putNumber("DriveTrain/Vision Loop P", 1.0);
+        SmartDashboard.putNumber("DriveTrain/Vision Loop P", 0.8);
+        SmartDashboard.putNumber("DriveTrain/Vision Loop d", 0.0);
+        SmartDashboard.putNumber("DriveTrain/Vision Loop i", 0.0001);
 
        // SmartDashboard.putNumber("DriveTrain P Values", 0);
         //SmartDashboard.putNumber("DriveTrain I Values", 0);
@@ -197,11 +201,11 @@ public class DriveTrain extends Subsystem {
 
         DriveSignal signal = controllers.curvatureDrive();
 
-        if (controllers.useVisionPressed()) {
+       /* if (controllers.useVisionPressed()) {
             limelight.setLED(true);
         } else if (controllers.useVisionReleased()) {
             limelight.setLED(false);
-        }
+        }*/
         if (controllers.useVision()) {
             visionLoop();
         } else {
@@ -262,13 +266,17 @@ public class DriveTrain extends Subsystem {
 
     public void visionLoop() {
         if (limelight.seesTarget()) {
-
+            double previousAngleToTarget = angleToTarget;
             double currentAngle = limelight.getAngleToTarget() - 1;
-            change = Math.abs(currentAngle - angleToTarget);
+            double delta = (currentAngle - angleToTarget);
             angleToTarget = currentAngle;
-            double p = SmartDashboard.getNumber("DriveTrain/Vision Loop P", 1.0) / 90.0;
-            double leftPower = -angleToTarget * p;
-            double rightPower = angleToTarget * p;
+            change = Math.abs(previousAngleToTarget - angleToTarget);
+            sumOfError = sumOfError + currentAngle;
+            double p = SmartDashboard.getNumber("DriveTrain/Vision Loop P", 0.8) / 90.0;
+            double d = SmartDashboard.getNumber("DriveTrain/Vision Loop d", 0.0) / 90.0;
+            double i = SmartDashboard.getNumber("DriveTrain/Vision Loop i", 0.0001) / 90.0;
+            double leftPower = -angleToTarget * p + d * delta + i * sumOfError;
+            double rightPower = angleToTarget * p + d * delta + i * sumOfError;
             DriveSignal driveSignal = new DriveSignal(leftPower, rightPower);
             setMotorPowerSignal(driveSignal);
 

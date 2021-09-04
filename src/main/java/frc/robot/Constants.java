@@ -75,15 +75,11 @@ public class Constants {
     public static final int COLOR_SERVO = 0;
 
     // Vader Setpoints
-    public static final DisturbingForce GREEN_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 360000);
-    //VERY_CLOSE_POSITION 185000
-    public static final DisturbingForce YELLOW_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 430000);
-    //CLOSE_POSITION 235000
-    public static final DisturbingForce BLUE_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 470000);
-    //AUTOLINE_DISTURBING_FORCE 450000
-    public static final DisturbingForce TRENCH_POSITION = new DisturbingForce(ControlMode.Position, 510000);
-    public static final DisturbingForce RED_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 495000);
-    //VERY_FAR_POSITION 505000
+    public static final DisturbingForce VERY_CLOSE_POSITION = new DisturbingForce(ControlMode.Position, 180000);
+    public static final DisturbingForce CLOSE_POSITION = new DisturbingForce(ControlMode.Position, 235000);
+    public static final DisturbingForce AUTOLINE_DISTURBING_FORCE = new DisturbingForce(ControlMode.Position, 429000);
+    public static final DisturbingForce TRENCH_POSITION = new DisturbingForce(ControlMode.Position, 477500);
+    public static final DisturbingForce VERY_FAR_POSITION = new DisturbingForce(ControlMode.Position, 500000);
     public static final DisturbingForce STOP_DISTURBING_FORCE = new DisturbingForce(ControlMode.PercentOutput, 0);
 
     public static final DisturbingForce ZEROING = new DisturbingForce(ControlMode.PercentOutput, -0.5);
@@ -92,10 +88,10 @@ public class Constants {
     public static final DisturbingForce MANUAL_MODE_DOWN = new DisturbingForce(ControlMode.PercentOutput, -0.25);
 
     // New Vader Setpoints
-    public static final DisturbingForce NEW_GREEN_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 360000);
-    public static final DisturbingForce NEW_YELLOW_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 460000);
-    public static final DisturbingForce NEW_BLUE_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 500000);
-    public static final DisturbingForce NEW_RED_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 530000);
+    public static final DisturbingForce NEW_GREEN_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 310000); //360000);
+    public static final DisturbingForce NEW_YELLOW_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 405000); //460000);
+    public static final DisturbingForce NEW_BLUE_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 470000); //500000);
+    public static final DisturbingForce NEW_RED_ZONE_POSITION = new DisturbingForce(ControlMode.Position, 470000); //530000);
 
 
     //Chesey Drive
@@ -110,22 +106,18 @@ public class Constants {
     public static final int VADER_INTEGRAL_ZONE = 5000;
 
     //Death Star Speed
-    public static final Order66 GREEN_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 2800);
-    //VERY_CLOSE_ORDER_66 2900
-    public static final Order66 YELLOW_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 3550);
-    //CLOSE_ORDER_66 2570
-    public static final Order66 BLUE_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 4100);
-    //AUTOLINE_ORDER_66 3500
-    public static final Order66 TRENCH_ORDER_66 = new Order66(ControlType.kVelocity, 4800);
-    public static final Order66 RED_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 5300);
-    //VERY_FAR_ORDER_66 5300
+    public static final Order66 VERY_CLOSE_ORDER_66 = new Order66(ControlType.kVelocity, 3000);
+    public static final Order66 CLOSE_ORDER_66 = new Order66(ControlType.kVelocity, 2570);
+    public static final Order66 AUTOLINE_ORDER_66 = new Order66(ControlType.kVelocity, 3550);
+    public static final Order66 TRENCH_ORDER_66 = new Order66(ControlType.kVelocity, 4900);
+    public static final Order66 VERY_FAR_ORDER_66 = new Order66(ControlType.kVelocity, 5400);
     public static final Order66 DONT_EXECUTE_ORDER_66 = new Order66(ControlType.kDutyCycle, 0);
 
     //New Death Star Speeds
-    public static final Order66 NEW_GREEN_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 2650);
-    public static final Order66 NEW_YELLOW_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 3400);
-    public static final Order66 NEW_BLUE_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 3900);
-    public static final Order66 NEW_RED_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 4900);
+    public static final Order66 NEW_GREEN_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 2800); //2650);
+    public static final Order66 NEW_YELLOW_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 3550); //3400);
+    public static final Order66 NEW_BLUE_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 4100); //3900);
+    public static final Order66 NEW_RED_ZONE_ORDER_66 = new Order66(ControlType.kVelocity, 5000); //4900);
 
     //Death Star PID
     public static final double DEATH_STAR_P = 0.00027;

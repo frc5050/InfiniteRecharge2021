@@ -103,7 +103,8 @@ public class Blinky extends Subsystem {
             for (int i = 4; i >= 0; i--) {
                 if (wantToShoot && shooting && i == 4) {
                     currentPowers[i] = -0.75;
-                } else if (canGo || (i >= 2 && irSensors[i].get())) {
+                    //in the next line, i >= X changes amount of balls able to intake(0=5balls)
+                } else if (canGo || (i >= 0 && irSensors[i].get())) {
                     canGo = true;
                     currentPowers[i] = INTAKE_POWER[i];
                 } else {
