@@ -19,10 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ColorSensor;
 import frc.robot.subsystems.DeathStar;
 import frc.robot.subsystems.DisturbingForce;
-import frc.robot.autons.ShootAndMoveOffLine;
-import frc.robot.autons.Slalom;
-import frc.robot.autons.StraightLinePathWeaver;
-import frc.robot.autons.TurnAuton;
+import frc.robot.autons.ShootAndMoveBackward;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.PathLoader;
@@ -30,24 +27,11 @@ import frc.robot.subsystems.TacoTime;
 import frc.robot.subsystems.Vader;
 import frc.robot.tasks.IntakeComeBack;
 import frc.robot.autons.AutonBase;
-import frc.robot.autons.GalacticSearchA;
-import frc.robot.autons.GalacticSearchB;
-import frc.robot.autons.GalacticSearchFull;
-import frc.robot.autons.IntakeUp;
 import frc.robot.autons.MoveOffLineForward;
-import frc.robot.autons.BarrelRacing;
-import frc.robot.autons.BouncePath;
-import frc.robot.autons.CirclePathWeaver;
-import frc.robot.autons.Default;
+import frc.robot.autons.Calibration;
+import frc.robot.autons.MoveOffLineBackward;
 import frc.robot.autons.DriveBackCalibration;
-import frc.robot.autons.ShootAndDriveToTrench;
-import frc.robot.autons.ShootAndGoToBrent;
-import frc.robot.autons.VisionShootAndDriveToTrench;
-import frc.robot.autons.VisionShootAndGoToBrent;
-import frc.robot.autons.VisionShootAndMoveFar;
-import frc.robot.autons.VisionShootAndMoveForward;
-import frc.robot.autons.VisionShootAndMoveOffLine;
-import frc.robot.autons.ShootAndMoveFar;
+import frc.robot.autons.SixBallTrench;
 import frc.robot.autons.ShootAndMoveForward;
 import frc.robot.subsystems.Blinky;
 
@@ -95,30 +79,14 @@ public class Robot extends TimedRobot {
         limelight = Limelight.getInstance();
         pathLoader = PathLoader.getInstance();
         // Autons
-        new Default();
+        new MoveOffLineBackward();
         new MoveOffLineForward();
         new DriveBackCalibration();
-        new ShootAndMoveOffLine();
-        new ShootAndDriveToTrench();
-        new TurnAuton();
-        new ShootAndGoToBrent();
+        new ShootAndMoveBackward();
+        new SixBallTrench();
         new ShootAndMoveForward();
-        new ShootAndMoveFar();
-        new VisionShootAndDriveToTrench();
-        new VisionShootAndGoToBrent();
-        new VisionShootAndMoveFar();
-        new CirclePathWeaver();
-        new VisionShootAndMoveForward();
-        new VisionShootAndMoveOffLine();
-        new IntakeUp();
-        //Pathweaver
-        new StraightLinePathWeaver();
-        new Slalom();
-        new BarrelRacing();
-        new BouncePath();
-        new GalacticSearchA();
-        new GalacticSearchB();
-        new GalacticSearchFull();
+        new Calibration();
+       
 
         SmartDashboard.putData("Selected Auton", chooser);
     }

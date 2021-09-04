@@ -8,23 +8,22 @@
 package frc.robot.tasks;
 
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Limelight;
+
 
 /**
  * Add your docs here.
  */
 public class VisionAim implements TaskBase {
     private final DriveTrain driveTrain;
-    private final Limelight limelight;
 
     public VisionAim(){
         driveTrain = DriveTrain.getInstance();
-        limelight = Limelight.getInstance();
     }
 
     @Override
     public void start() {
-        limelight.setLED(true);
+        System.out.println("vision start");
+
     }
 
     @Override
@@ -35,6 +34,6 @@ public class VisionAim implements TaskBase {
 
     @Override
     public void done() {
-        limelight.setLED(false);
+        System.out.println("vision done");
     }
 }

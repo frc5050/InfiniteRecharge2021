@@ -7,27 +7,22 @@
 
 package frc.robot.autons;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.revrobotics.ControlType;
-
-import frc.robot.Order66;
-import frc.robot.subsystems.DisturbingForce;
-import frc.robot.tasks.DriveDistance;
-import frc.robot.tasks.Shoot;
+import frc.robot.tasks.MoveOffLine;
 import frc.robot.tasks.TaskBase;
-import frc.robot.tasks.ZeroHoodMotor;
 
 /**
  * Add your docs here.
  */
-public class ShootAndMoveFar extends AutonBase {
+public class MoveOffLineBackward extends AutonBase {
     @Override
     public TaskBase[] getTasks() {
-        return new TaskBase[]{
-            new ZeroHoodMotor(),
-            new Shoot(new Order66(ControlType.kVelocity, 3200), new DisturbingForce(ControlMode.Position, 430000)),
-            new DriveDistance(-54 * 25.4, 0.4),
+        return new TaskBase[] {
+            new MoveOffLine(),
         };
-        
+    }
+
+    @Override
+    public boolean isDefault() {
+        return true;
     }
 }

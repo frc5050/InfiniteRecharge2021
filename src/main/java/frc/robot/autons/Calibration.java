@@ -7,25 +7,27 @@
 
 package frc.robot.autons;
 
-import frc.robot.tasks.DriveDistance;
-import frc.robot.tasks.ShootFromAutonLine;
+import java.io.FileNotFoundException;
+
+import frc.robot.subsystems.PathLoader;
+import frc.robot.tasks.FindPath;
 import frc.robot.tasks.TaskBase;
-import frc.robot.tasks.VisionAim;
-import frc.robot.tasks.ZeroHoodMotor;
 
 /**
  * Add your docs here.
  */
-public class VisionShootAndMoveForward extends AutonBase {
+public class Calibration extends AutonBase {
     @Override
-    public TaskBase[] getTasks() {
-        return new TaskBase[]{
-            new ZeroHoodMotor(),
-            new VisionAim(),
-            new ShootFromAutonLine(),
-            new DriveDistance(48 * 25.4, -0.4),
-        };
+    public TaskBase[] getTasks(){
+        try {
+            return new TaskBase[] {
+                new FindPath(PathLoader.getInstance().getPath("LessCircle.wpilib.json"))
+            };
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         
-    }
+        return new TaskBase[0];
 
+    }
 }

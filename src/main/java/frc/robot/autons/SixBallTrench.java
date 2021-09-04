@@ -10,11 +10,13 @@ package frc.robot.autons;
 import frc.robot.tasks.DeployIntakeTrench;
 import frc.robot.tasks.DriveDistance;
 import frc.robot.tasks.EmergencyAuton;
+import frc.robot.tasks.FindPath;
 import frc.robot.tasks.IntakeComeBack;
 import frc.robot.tasks.MoveOffLine;
 import frc.robot.tasks.NavXTurnDegrees;
 import frc.robot.tasks.ParallelTask;
 import frc.robot.tasks.RevUp;
+import frc.robot.tasks.SetLimelight;
 import frc.robot.tasks.Shoot;
 import frc.robot.tasks.TaskBase;
 import frc.robot.tasks.VisionAim;
@@ -22,27 +24,34 @@ import frc.robot.tasks.ZeroHoodMotor;
 
 import static frc.robot.Constants.*;
 
+import java.io.FileNotFoundException;
+
+import frc.robot.subsystems.PathLoader;
+
 /**
  * Add your docs here.
  */
-public class VisionShootAndDriveToTrench extends AutonBase {
+public class SixBallTrench extends AutonBase {
     @Override
     public TaskBase[] getTasks() {
-        return new TaskBase[]{
-                new ZeroHoodMotor(),
-                new VisionAim(),
-                new EmergencyAuton(new Shoot(AUTOLINE_ORDER_66, AUTOLINE_DISTURBING_FORCE), 5, new MoveOffLine()),
-                new DeployIntakeTrench(),
-                new DriveDistance(-120 * 25.4, 0.5),
-                new NavXTurnDegrees(14),
-                new ParallelTask(new DriveDistance(-72 * 25.4, 0.4), new ZeroHoodMotor()),
-                new IntakeComeBack(),
-                new NavXTurnDegrees(-5),
-                new ParallelTask(new DriveDistance(130 * 25.4, -0.675), new RevUp(TRENCH_ORDER_66, TRENCH_POSITION)),
-                new VisionAim(),
-                new Shoot(TRENCH_ORDER_66, TRENCH_POSITION),
-                //new DriveDistance(120 * 25.4, true),
-                //new DriveDistance(-72 * 25.4),
-        };
+        try {
+            return new TaskBase[] { new ZeroHoodMotor(),
+                    new SetLimelight(true),
+                    new EmergencyAuton(new Shoot(AUTOLINE_ORDER_66, AUTOLINE_DISTURBING_FORCE), 5, new MoveOffLine()),
+                    new DeployIntakeTrench(),
+                    
+                    new FindPath(PathLoader.getInstance().getPath("TrenchPath.wpilib.json")),
+                    new FindPath(PathLoader.getInstance().getPath("TrenchToAutoLine.wpilib.json")),
+                    new VisionAim(),
+                    new Shoot(AUTOLINE_ORDER_66, AUTOLINE_DISTURBING_FORCE),
+                    new SetLimelight(false),
+
+                    new IntakeComeBack()
+                 };     
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); 
+            return new TaskBase[0];
+           
+        }
     }
 }

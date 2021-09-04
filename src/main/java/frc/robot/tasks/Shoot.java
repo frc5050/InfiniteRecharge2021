@@ -34,10 +34,12 @@ public class Shoot implements TaskBase {
 
     @Override
     public void start() {
+        System.out.println("shooting started");
         timer = new Timer();
         blinky.wantToShoot = true;
         deathStar.setOrder66(order66);
         Vader.getInstance().setVaderControlMode(disturbingForce);
+        
     }
 
     @Override
@@ -66,5 +68,7 @@ public class Shoot implements TaskBase {
         timer.stop();
         deathStar.setOrder66(DONT_EXECUTE_ORDER_66);
         blinky.wantToShoot = false;
+        System.out.println("Shooting ended");
+
     }
 }

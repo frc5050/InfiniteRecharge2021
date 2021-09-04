@@ -272,13 +272,15 @@ public class DriveTrain extends Subsystem {
             angleToTarget = currentAngle;
             change = Math.abs(previousAngleToTarget - angleToTarget);
             sumOfError = sumOfError + currentAngle;
-            double p = SmartDashboard.getNumber("DriveTrain/Vision Loop P", 0.8) / 90.0;
+            double p = SmartDashboard.getNumber("DriveTrain/Vision Loop P", 0.85) / 90.0;
             double d = SmartDashboard.getNumber("DriveTrain/Vision Loop d", 0.0) / 90.0;
             double i = SmartDashboard.getNumber("DriveTrain/Vision Loop i", 0.0001) / 90.0;
             double leftPower = -angleToTarget * p + d * delta + i * sumOfError;
             double rightPower = angleToTarget * p + d * delta + i * sumOfError;
             DriveSignal driveSignal = new DriveSignal(leftPower, rightPower);
             setMotorPowerSignal(driveSignal);
+            SmartDashboard.putNumber("vision loop/ right motor power", rightPower);
+            SmartDashboard.putNumber("vision loop/ angle to target", angleToTarget);
 
         } else {
             setMotorPowerSignal(new DriveSignal(0, 0));
@@ -286,7 +288,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public boolean isAimedAtTarget() {
-        if ((Math.abs(angleToTarget) <= 1) && change < 0.01) {
+        if ((Math.abs(angleToTarget) <= 3) && change < 0.01) {
             counterForVision++;
         } else {
             counterForVision = 0;

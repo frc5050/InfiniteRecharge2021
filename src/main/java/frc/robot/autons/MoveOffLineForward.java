@@ -13,7 +13,7 @@ public class MoveOffLineForward extends AutonBase{
 	@Override
 	public TaskBase[] getTasks() {
 		return new TaskBase[]{
-            new DriveDistance(24 * 25.4, 0.5)
+            new DriveDistance(-30 * 25.4, -0.3)
 
         };
 	}

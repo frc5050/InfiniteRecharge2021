@@ -21,7 +21,7 @@ public class ShootAndMoveForward extends AutonBase {
         return new TaskBase[]{
             new ZeroHoodMotor(),
             new ShootFromAutonLine(),
-            new DriveDistance(48 * 25.4, -0.4),
+            new DriveDistance(-48 * 25.4, -0.4),
         };
         
     }

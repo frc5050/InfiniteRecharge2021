@@ -48,7 +48,7 @@ public class DriveDistance implements TaskBase {
         //System.out.println(demand);
         driveTrain.resetEncoders();
         if (demand < 0) {
-           // power = -power;
+           //power = -power;
             //System.out.println("DriveDistance inverted");
         } else {
             System.out.println("DriveDistance NOT inverted");
