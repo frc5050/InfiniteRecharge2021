@@ -84,7 +84,7 @@ public class DeathStar extends Subsystem {
         leftShootPidController.setReference(0, ControlType.kDutyCycle);
         rightShootPidController.setReference(0, ControlType.kDutyCycle);
 
-        SmartDashboard.putNumber("Shooter/RPM Tolerance", DEATH_STAR_TOLERANCE);
+        //SmartDashboard.putNumber("Shooter/RPM Tolerance", DEATH_STAR_TOLERANCE);
     }
 
     

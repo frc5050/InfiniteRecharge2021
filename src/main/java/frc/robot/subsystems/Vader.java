@@ -53,7 +53,7 @@ public class Vader extends Subsystem {
 
     @Override
     public void generalInit() {
-        SmartDashboard.putNumber("Vader/Position", 0);
+        //SmartDashboard.putNumber("Vader/Position", 0);
         vaderMotor.set(ControlMode.PercentOutput, 0);
     }
 
@@ -67,13 +67,13 @@ public class Vader extends Subsystem {
             vaderMotor.configPeakOutputReverse(-1.0);
         }
         
-        SmartDashboard.putNumber("Vader/Encoder Counts", vaderMotor.getSelectedSensorPosition());
+        //SmartDashboard.putNumber("Vader/Encoder Counts", vaderMotor.getSelectedSensorPosition());
     }
 
     public void setVaderControlMode(DisturbingForce disturbingForce) {
         vaderMotor.set(disturbingForce.controlMode, disturbingForce.demand);
 
-        SmartDashboard.putNumber("Vader/Position", disturbingForce.demand);
+        //SmartDashboard.putNumber("Vader/Position", disturbingForce.demand);
         pastDisturbingForce = disturbingForce;
     }
 

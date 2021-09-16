@@ -91,10 +91,10 @@ public class ColorSensor extends Subsystem {
 
         Color detectedColor = colorSensor.getColor();
         double IR = colorSensor.getIR();
-       // SmartDashboard.putNumber("Color Sensor/Red", detectedColor.red);
-        //SmartDashboard.putNumber("Color Sensor/Green", detectedColor.green);
-        //SmartDashboard.putNumber("Color Sensor/Blue", detectedColor.blue);
-        //SmartDashboard.putNumber("IR", IR);
+        SmartDashboard.putNumber("Color Sensor/Red", detectedColor.red);
+        SmartDashboard.putNumber("Color Sensor/Green", detectedColor.green);
+        SmartDashboard.putNumber("Color Sensor/Blue", detectedColor.blue);
+        SmartDashboard.putNumber("IR", IR);
         String colorString;
         char fieldColor = 'U';
         ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
@@ -117,12 +117,14 @@ public class ColorSensor extends Subsystem {
             colorString = "Unknown";
         }
         //SmartDashboard.putNumber("Color Sensor/Confidence", match.confidence);
-        //SmartDashboard.putString("Color Sensor/Detected Color", colorString);
+        SmartDashboard.putString("Color Sensor/Detected Color", colorString);
         return fieldColor;
     }
 
     @Override
     public void teleopPeriodic() {
+
+        getColor();
 
         // Wheel Turn
         if (controllers.aHeld()) {

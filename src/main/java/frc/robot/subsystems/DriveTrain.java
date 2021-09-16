@@ -152,9 +152,10 @@ public class DriveTrain extends Subsystem {
         leftMotorFront.setInverted(true);
         setMotorPower(0, 0);
 
-        SmartDashboard.putNumber("DriveTrain/Vision Loop P", 0.8);
+        /*SmartDashboard.putNumber("DriveTrain/Vision Loop P", 0.8);
         SmartDashboard.putNumber("DriveTrain/Vision Loop d", 0.0);
         SmartDashboard.putNumber("DriveTrain/Vision Loop i", 0.0001);
+        */
 
        // SmartDashboard.putNumber("DriveTrain P Values", 0);
         //SmartDashboard.putNumber("DriveTrain I Values", 0);
@@ -178,7 +179,7 @@ public class DriveTrain extends Subsystem {
     @Override
     public void generalPeriodic() {
         //System.out.println(gyro.getAngle());
-        SmartDashboard.putNumber("DriveTrain/Left Front Encoder Value", leftEncoderFront.getPosition());
+        /*SmartDashboard.putNumber("DriveTrain/Left Front Encoder Value", leftEncoderFront.getPosition());
         SmartDashboard.putNumber("DriveTrain/Left Back Encoder Value", leftEncoderBack.getPosition());
         SmartDashboard.putNumber("DriveTrain/Right Front Encoder Value", rightEncoderFront.getPosition());
         SmartDashboard.putNumber("DriveTrain/Right Back Encoder Value", rightEncoderBack.getPosition());
@@ -187,7 +188,7 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("DriveTrain/Right Front Velocity Value", rightEncoderFront.getVelocity());
         SmartDashboard.putNumber("DriveTrain/Right Back Velocity Value", rightEncoderBack.getVelocity()); 
         SmartDashboard.putNumber("DriveTrain/Measurement Period", rightEncoderFront.getMeasurementPeriod());
-        SmartDashboard.putNumber("DriveTrain/Average Depth", rightEncoderFront.getAverageDepth());
+        SmartDashboard.putNumber("DriveTrain/Average Depth", rightEncoderFront.getAverageDepth());*/
 
         odometry.update(
             getRotation2d(), 
@@ -272,15 +273,15 @@ public class DriveTrain extends Subsystem {
             angleToTarget = currentAngle;
             change = Math.abs(previousAngleToTarget - angleToTarget);
             sumOfError = sumOfError + currentAngle;
-            double p = SmartDashboard.getNumber("DriveTrain/Vision Loop P", 0.85) / 90.0;
-            double d = SmartDashboard.getNumber("DriveTrain/Vision Loop d", 0.0) / 90.0;
-            double i = SmartDashboard.getNumber("DriveTrain/Vision Loop i", 0.0001) / 90.0;
+            double p = 0.85 / 90.0; //SmartDashboard.getNumber("DriveTrain/Vision Loop P", 0.85) / 90.0;
+            double d = 0.0 / 90.0; //SmartDashboard.getNumber("DriveTrain/Vision Loop d", 0.0) / 90.0;
+            double i = 0.0001 / 90.0; //SmartDashboard.getNumber("DriveTrain/Vision Loop i", 0.0001) / 90.0;
             double leftPower = -angleToTarget * p + d * delta + i * sumOfError;
             double rightPower = angleToTarget * p + d * delta + i * sumOfError;
             DriveSignal driveSignal = new DriveSignal(leftPower, rightPower);
             setMotorPowerSignal(driveSignal);
-            SmartDashboard.putNumber("vision loop/ right motor power", rightPower);
-            SmartDashboard.putNumber("vision loop/ angle to target", angleToTarget);
+            //SmartDashboard.putNumber("vision loop/ right motor power", rightPower);
+            //SmartDashboard.putNumber("vision loop/ angle to target", angleToTarget);
 
         } else {
             setMotorPowerSignal(new DriveSignal(0, 0));
